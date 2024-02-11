@@ -1,3 +1,6 @@
+from random import shuffle
+
+
 class Card(object):
     def __init__(self, rank, suit):
         self.rank = rank
@@ -52,3 +55,19 @@ class Hand(object):
             text += str(card) + " "
         text += "\nHand value: " + str(self.get_value())
         return text
+
+
+class Deck(object):
+    def __init__(self):
+        # Ранги
+        ranks = "23456789TJQKA"
+        # Масті
+        suits = "DCHS"
+        # Генератор списків, що створює колоду з 52 карт.
+        self.cards = [Card(r, s) for r in ranks for s in suits]
+        # Перетасовуємо колоду. Не забудьте імпортувати функцію shuffle із модуля random
+        shuffle(self.cards)
+
+    def deal_card(self):
+        """Функция сдачи карты"""
+        return self.cards.pop()
